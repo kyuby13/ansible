@@ -1,6 +1,6 @@
 -
  name: update server
- hosts: qoinsta
+ hosts: all
  become: yes
  tasks:
  - name: update qoinsta
