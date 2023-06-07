@@ -3,7 +3,7 @@
  hosts: all
  become: yes
  tasks:
- - name: update qoinsta
+ - name: update server
    yum:
      name: '*'
      state: latest
