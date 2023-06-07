@@ -1,0 +1,9 @@
+-
+ name: update server
+ hosts: qoinsta
+ become: yes
+ tasks:
+ - name: update qoinsta
+   yum:
+     name: '*'
+     state: latest
