@@ -1,0 +1,10 @@
+-
+ name: update server
+ hosts: alpine
+ become: yes
+ tasks:
+ - name: update alpine
+   yum:
+     name: '*'
+     state: latest
+     exclude: pmm*
