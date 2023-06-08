@@ -1,0 +1,17 @@
+---
+  - hosts: all
+    gather_facts: yes
+    tasks:
+    - name: test connection
+      ping:
+
+    - name: "Run a shell command on a remote host"
+      shell: |
+         whoami
+         uptime & uname -a
+         df -h
+         free -m
+         ping -c 3 google.com
+
+      ignore_errors: yes
+      become: true
