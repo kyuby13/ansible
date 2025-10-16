@@ -1,0 +1,5 @@
+- name: Jalankan ping check
+  hosts: all
+  gather_facts: false
+  roles:
+    - ping-check

@@ -1,0 +1,26 @@
+- name: Baca daftar IP target
+  set_fact:
+   target_ips: "{{ lookup('file', role_path + '/files/' + target_ip_file).splitlines() }}"
+
+- name: Ping IP target
+  command: ping -c1 {{ item }}
+  register: ping_results
+  ignore_errors: true
+  changed_when: false
+  loop: "{{ target_ips }}"
+
+- name: Ambil IP yang berhasil ping
+  set_fact:
+    sukses_ping: "{{ ping_results.results | selectattr('rc', 'equalto', 0) | map(attribute='item') | list }}"
+
+- name: Ambil IP yang gagal ping
+  set_fact:
+    gagal_ping: "{{ ping_results.results | selectattr('rc', 'ne', 0) | map(attribute='item') | list }}"
+
+- name: Tampilkan IP sukses
+  debug:
+    msg: "✅ Ping berhasil ke: {{ sukses_ping | join(', ') if sukses_ping | length > 0 else 'Tidak ada' }}"
+
+- name: Tampilkan IP gagal
+  debug:
+    msg: "❌ Ping gagal ke: {{ gagal_ping | join(', ') if gagal_ping | length > 0 else 'Tidak ada' }}"
