@@ -31,17 +31,25 @@ ping-host-to-host
 
 
 ⚙️ Cara Kerja
+
 File IP Target:
+
     - Nama file IP disesuaikan dengan kombinasi env + cluster, misal: target_ips_dev_qoin.txt.
+
     - File ini dibaca melalui variable target_ip_file di dalam group_vars/all.yml.
+
 Task Utama:
+
     - Task akan membaca file IP target, melakukan ping satu per satu, lalu menampilkan hasil yang sukses dan gagal.
 
 🚀 Cara Menjalankan
+
 1. masuk kefolder root, disini contoh ada di /home/hendro/ansible/ping-host-to-host
+
 cd /home/hendro/ansible/ping-host-to-host
 
 2. comment/uncomment tujuan ip ada di inventory/qoin/group_vars/all.yml contoh di sini target_ips_internet.txt 
+
 target_ip_file: "target_ips_dev.txt"
 # target_ip_file: "target_ips_sta.txt"
 # target_ip_file: "target_ips_prod.txt"
@@ -52,10 +60,13 @@ target_ip_file: "target_ips_dev.txt"
 # target_ip_file: "target_ips_gen.txt"
 
 3. Jalankan playbook contoh disini ping dari qoin_man ke dev
+
 ansible-playbook -i inventory/qoin/inventory.ini site.yml -l qoin_man
 
 📌 Catatan
+
 Variabel target_ip_file harus sesuai dengan nama file yang tersedia di folder roles/ping-check/files.
+
 Penamaan environment dan cluster berpengaruh terhadap path file dan konfigurasi.
 
 4. Jangan lupa setting juga ansible host di /etc/ansible/hosts untuk qoin_man nya
