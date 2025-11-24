@@ -1,0 +1,18 @@
+
+#cara pakai
+cek dulu misal pakai ping :
+
+ansible-playbook ping.yaml -l cr_sta
+
+ket: cr_sta ini yang ada di /etc/ansible/hosts
+
+#inibuat addd user nya ( sesuaikan user nya misalkan yuby)
+ansible-playbook user.yaml -K -l cr_sta
+
+
+#hasil nya
+
+user : yuby
+pass : pwlpi123
+
+pertama login langsung minta ganti password , dan sudah bisa sudo juga

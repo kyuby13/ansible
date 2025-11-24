@@ -1,0 +1,18 @@
+-
+  name: buat user dan password
+  hosts: all
+  become: yes
+  tasks:
+  - name: buat user baru
+    ansible.builtin.user:
+      name: "{{ item }}"
+      shell: /bin/bash
+      state: present
+      groups: wheel
+      password: $6$./xokdmo.Um1xF4R$MYsru5G/gs0N6tQEPjrl4LKQTw4dn.mzDvf2niVy2VrLr8JtU76jkc.Oh/ZH51ZUvf84aK00hkHK29iYJehvN0
+    loop:
+      - yuby 
+  - name : ubah password ketika login
+    shell: chage -d 0 "{{ item }}"
+    loop:
+      - yuby
