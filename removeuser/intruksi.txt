@@ -1,0 +1,7 @@
+#cara eksekusi
+
+ansible-playbook deluser.yaml -e "username=andi"
+
+# misal di segement tertentu
+
+ansible-playbook  deluser.yaml -e "username=andi" -K -l cr_sta

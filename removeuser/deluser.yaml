@@ -1,0 +1,10 @@
+---
+- name: Hapus user di semua server
+  hosts: all
+  become: yes
+  tasks:
+    - name: Hapus user
+      ansible.builtin.user:
+        name: "{{ username }}"
+        state: absent
+        remove: yes
