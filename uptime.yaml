@@ -1,0 +1,12 @@
+---
+- name: Check uptime all Linux servers
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Get server uptime
+      command: uptime -p
+      register: uptime_output
+
+    - name: Show uptime result
+      debug:
+        msg: "Server {{ inventory_hostname }} uptime: {{ uptime_output.stdout }}"
